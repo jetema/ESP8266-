@@ -1,0 +1,23 @@
+>D
+res=0
+volt=0
+curr=0
+pow=0
+ipa="192.168.1.198"
+
+>S
+if upsecs%5==0
+then
+res=http(ipa "/cm?user=admin&password=xxx&cmnd=status%208")
+endif
+
+>E
+pow=gwr("\"Power\":" 2)
+volt=gwr("\"Voltage\":" 2)
+curr=gwr("\"Current\":" 2)
+print %pow%
+print %volt%
+print %curr%
+
+>W
+Potencia %0pow%W | Tension %0volt%V | Corriente %curr%A
